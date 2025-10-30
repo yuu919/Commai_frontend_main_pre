@@ -1,0 +1,71 @@
+{
+  "openai": {
+    "gpt-4o": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 16384,
+      "chat_fallback_model": "gpt-4o",
+      "chat_max_tokens": 16384
+    },
+    "ChatGPT-4o": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 16384,
+      "canonical_model": "gpt-4o",
+      "chat_fallback_model": "gpt-4o",
+      "chat_max_tokens": 16384
+    },
+    "gpt-4.1": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 32768,
+      "chat_fallback_model": "gpt-4.1",
+      "chat_max_tokens": 32768
+    },
+    "gpt-4.1o": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 32768,
+      "chat_fallback_model": "gpt-4.1",
+      "chat_max_tokens": 32768
+    },
+    "4o-mini": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 100000,
+      "canonical_model": "o4-mini"
+    },
+    "o4-mini": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 100000
+    },
+    "gpt-5o": {
+      "api": "responses",
+      "max_tokens_param": "max_output_tokens"
+    }
+  },
+  "anthropic": {
+    "claude-sonnet-4": {
+      "api": "messages",
+      "max_tokens_param": "max_tokens",
+      "max_tokens": 64000
+    },
+    "claude-sonnet-4-5": {
+      "api": "messages",
+      "max_tokens_param": "max_tokens",
+      "max_tokens": 64000
+    }
+  },
+  "gemini": {
+    "gemini-2.5-flash": {
+      "api": "generate_content",
+      "max_tokens_param": "max_output_tokens",
+      "max_tokens": 65536
+    },
+    "gemini-2.5-pro": {
+      "api": "generate_content",
+      "max_tokens_param": "max_output_tokens"
+    }
+  }
+}

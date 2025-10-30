@@ -1,0 +1,48 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src/",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "policy:tokens-ban": "rg -n \"var\\(--\" src/app src/features --glob '!**/components/ui/**' --glob '!**/styles/**' --glob '!**/app/globals.css' && echo 'Tokens direct reference found' && exit 1 || echo 'OK'",
+    "policy:hardcolor-ban": "rg -n \"#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b\" src --glob '!**/styles/tokens.css' --glob '!**/*.md' && echo 'Hardcoded color found' && exit 1 || echo 'OK'",
+    "policy:rgba-hsla-ban": "rg -n \"rgba?\\s*\\(\" src --glob '!**/styles/**' --glob '!**/*.md' && echo 'rgba found' && exit 1 || echo 'OK'; rg -n \"hsla?\\s*\\(\" src --glob '!**/styles/**' --glob '!**/*.md' && echo 'hsla found' && exit 1 || echo 'OK'",
+    "policy:check": "npm run -s policy:tokens-ban && npm run -s policy:hardcolor-ban && npm run -s policy:rgba-hsla-ban",
+    "test": "echo \"no tests\" && exit 0"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-markdown": "^9.0.1",
+    "react-virtuoso": "4.14.0",
+    "rehype-highlight": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "swr": "2.3.6",
+    "zod": "4.1.11"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.4",
+    "stylelint": "^16.24.0",
+    "stylelint-config-recommended": "^17.0.0",
+    "stylelint-config-recommended-scss": "^16.0.1",
+    "stylelint-config-standard": "^39.0.0",
+    "stylelint-config-tailwindcss": "^1.0.0",
+    "stylelint-order": "^7.0.0",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
+}

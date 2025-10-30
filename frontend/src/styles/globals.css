@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "./tokens.css";
+ 
+@plugin "@tailwindcss/typography";
+
+/* Base document styles */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Highlight.js theme harmonization */
+.hljs {
+  background: transparent;
+  color: inherit;
+}
+
+/* Prose spacing adjustments (override plugin defaults with same selector) */
+.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.6em;
+  margin-top: 0.6em;
+}
+
+.prose :where(ul,ol):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.6em;
+  margin-top: 0.6em;
+}
+
+.prose :where(li > ul, li > ol):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.3em;
+  margin-top: 0.3em;
+}
+
+.prose :where(h1,h2,h3,h4,h5,h6):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.4em;
+  margin-top: 1em;
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
+  padding-left: 1rem;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
+}
+
+.prose :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
+}
+.prose > :where(:first-child){ margin-top: 0; }
+.prose > :where(:last-child){ margin-bottom: 0; }

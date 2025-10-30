@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-tailwindcss"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "color-named": "never",
+    "declaration-no-important": true,
+    "selector-max-id": 0,
+    "order/properties-alphabetical-order": true,
+    "function-disallowed-list": ["color-mix"]
+  },
+  "ignoreFiles": [
+    "src/styles/tokens.css",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

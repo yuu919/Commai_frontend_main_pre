@@ -1,0 +1,107 @@
+export default {
+  content: [
+    "./src/**/*.{ts,tsx,js,jsx}",
+    "./src/app/**/*.{ts,tsx,js,jsx}",
+    "./src/features/**/*.{ts,tsx,js,jsx}",
+    "./src/components/**/*.{ts,tsx,js,jsx}"
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      fontFamily: {
+        heading: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            'h1,h2,h3,h4,h5,h6': {
+              fontFamily: theme('fontFamily.heading').join(','),
+              fontWeight: '600',
+              color: 'var(--fg)',
+              lineHeight: '1.3',
+              marginTop: '1.5em',
+              marginBottom: '0.5em',
+            },
+            h1: { fontSize: '1.5rem', fontWeight: '700', marginTop:'1em', marginBottom:'0.4em' },
+            h2: { fontSize: '1.375rem', marginTop:'1em', marginBottom:'0.4em' },
+            h3: { fontSize: '1.25rem', marginTop:'1em', marginBottom:'0.4em' },
+            h4: { fontSize: '1.125rem', marginTop:'1em', marginBottom:'0.4em' },
+            h5: { fontSize: '1rem', marginTop:'1em', marginBottom:'0.4em' },
+            h6: { fontSize: '0.875rem', marginTop:'1em', marginBottom:'0.4em' },
+            p: { marginTop: '0.6em', marginBottom: '0.6em', lineHeight: '1.5' },
+            ul: { marginTop: '0.6em', marginBottom: '0.6em', paddingLeft: '1.5em' },
+            ol: { marginTop: '0.6em', marginBottom: '0.6em', paddingLeft: '1.5em' },
+            li: { marginTop: '0.3em', marginBottom: '0.3em' },
+            code: {
+              fontFamily: theme('fontFamily.mono').join(','),
+              fontSize: '0.9em',
+              fontWeight: '400',
+              color: 'var(--accent)',
+              backgroundColor: 'var(--surface-2)',
+              padding: '0.2em 0.4em',
+              borderRadius: '0.25rem',
+              border: `1px solid var(--border)`,
+            },
+            'code::before,code::after': { content: '""' },
+            pre: {
+              fontFamily: theme('fontFamily.mono').join(','),
+              backgroundColor: 'var(--surface-1)',
+              color: 'var(--fg)',
+              overflow: 'auto',
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              fontSize: '0.9em',
+              lineHeight: '1.5',
+            },
+            table: {
+              width: '100%',
+              borderCollapse: 'collapse',
+              fontSize: '0.9em',
+              border: '1px solid var(--border)',
+              borderRadius: '0.5rem',
+              overflow: 'hidden',
+            },
+            thead: { backgroundColor: 'var(--surface-2)' },
+            th: {
+              fontFamily: theme('fontFamily.heading').join(','),
+              fontWeight: '600',
+              padding: '0.65rem 0.75rem',
+              borderBottom: `1px solid var(--border)`,
+              borderRight: `1px solid var(--border)`,
+              color: 'var(--fg)',
+            },
+            'th:last-child': { borderRight: 'none' },
+            td: {
+              padding: '0.65rem 0.75rem',
+              borderBottom: `1px solid var(--border)`,
+              borderRight: `1px solid var(--border)`,
+            },
+            'td:last-child': { borderRight: 'none' },
+            'tbody tr:last-child td': { borderBottom: 'none' },
+            blockquote: {
+              fontStyle: 'italic',
+              borderLeft: '3px solid var(--border)',
+              paddingLeft: '1em',
+              color: 'var(--fg-muted)',
+            },
+          },
+        },
+        invert: {
+          css: {
+            'h1,h2,h3,h4,h5,h6': { color: 'var(--fg)' },
+            code: { color: 'var(--accent)', backgroundColor: 'var(--surface-2)', border: `1px solid var(--border)` },
+            pre: { backgroundColor: 'var(--surface-1)', color: 'var(--fg)' },
+            table: { border: `1px solid var(--border)` },
+            thead: { backgroundColor: 'var(--surface-2)' },
+            th: { borderColor: 'var(--border)' },
+            td: { borderColor: 'var(--border)' },
+          },
+        },
+      }),
+    },
+  },
+  plugins: [
+    (await import('@tailwindcss/typography')).default,
+  ],
+};

@@ -1,0 +1,24 @@
+/* LLM utilities mapped to tokens (allowed in styles directory) */
+.llm-fg { color: var(--fg); }
+.llm-border { border-color: var(--border); }
+
+/* Soft surfaces/text */
+.bg-surface-success-soft { background-color: var(--surface-success-soft); }
+.text-fg-success-strong { color: var(--fg-success-strong); }
+.bg-surface-warn-soft { background-color: var(--surface-warn-soft); }
+.text-fg-warn-strong { color: var(--fg-warn-strong); }
+.bg-surface-error-soft { background-color: var(--surface-error-soft); }
+.text-fg-error-strong { color: var(--fg-error-strong); }
+.bg-accent-soft { background-color: var(--surface-accent-soft); }
+.text-accent { color: var(--accent); }
+
+/* Surface-2 interactive */
+.bg-surface-2-active { background-color: var(--surface-2-active); }
+.bg-surface-2-hover:hover { background-color: var(--surface-2-hover); }
+
+/* Muted text approximations */
+.llm-fg-muted-40 { color: var(--fg-muted-40); }
+
+/* Radius tokens */
+.rounded-ui-xs { border-radius: var(--ui-radius-xs); }
+.rounded-ui-sm { border-radius: var(--ui-radius-sm); }

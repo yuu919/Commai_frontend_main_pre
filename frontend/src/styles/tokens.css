@@ -1,0 +1,143 @@
+:root {
+  /* base semantic */
+  --bg: #fff;
+  --fg: #171717;
+  --border: #e5e7eb;
+  --surface-1: #fff;
+  --surface-2: #f9fafb;
+
+  /* roles */
+  --primary: #7c4dff;
+  --accent: #7c4dff;
+  --success: #16a34a;
+  --warn: #d97706;
+  --error: #dc2626;
+  --info: #0891b2;
+  /* foreground on primary surfaces */
+  --fg-on-primary: #ffffff;
+
+  /* interactive mixes */
+  --accent-hover: color-mix(in oklab, var(--accent), black 10%);
+  --accent-active: color-mix(in oklab, var(--accent), black 15%);
+  --error-hover: color-mix(in oklab, var(--error), black 10%);
+  --error-active: color-mix(in oklab, var(--error), black 15%);
+  --surface-2-hover: color-mix(in oklab, var(--surface-2), black 5%);
+  --surface-2-active: color-mix(in oklab, var(--surface-2), black 8%);
+  --fg-muted: color-mix(in oklab, var(--fg), transparent 30%);
+  --fg-muted-40: color-mix(in oklab, var(--fg), transparent 40%);
+  --fg-muted-50: color-mix(in oklab, var(--fg), transparent 50%);
+  --fg-placeholder: color-mix(in oklab, var(--fg), transparent 60%);
+  --fg-disabled: color-mix(in oklab, var(--fg), transparent 50%);
+  --surface-1-disabled: color-mix(in oklab, var(--surface-1), black 3%);
+
+  /* semantic soft surfaces/text */
+  --primary-soft: color-mix(in oklab, var(--primary), transparent 90%);
+  --primary-soft-hover: color-mix(in oklab, var(--primary), transparent 85%);
+  --accent-soft: color-mix(in oklab, var(--accent), transparent 85%);
+  --accent-disabled-bg: color-mix(in oklab, var(--accent), transparent 60%);
+  --error-disabled-bg: color-mix(in oklab, var(--error), transparent 60%);
+  --surface-error-soft: color-mix(in oklab, var(--error), transparent 92%);
+  --fg-error-soft: color-mix(in oklab, var(--error), transparent 20%);
+  --fg-error-strong: color-mix(in oklab, var(--error), transparent 10%);
+  --surface-success-soft: color-mix(in oklab, var(--success), transparent 92%);
+  --fg-success-strong: color-mix(in oklab, var(--success), transparent 10%);
+  --surface-warn-soft: color-mix(in oklab, var(--warn), transparent 92%);
+  --surface-accent-soft: color-mix(in oklab, var(--accent), transparent 92%);
+
+  /* chat upload tokens */
+  --chat-upload-track: color-mix(in oklab, var(--fg), transparent 92%);
+  --chat-upload-bar: var(--primary);
+  --chat-upload-text-muted: color-mix(in oklab, var(--fg), transparent 35%);
+  --chat-upload-focus: var(--accent);
+
+  /* overlay/scrim */
+  --overlay-scrim: color-mix(in oklab, var(--fg), transparent 80%);
+
+  /* ui (size/radius/shadow/z) */
+  --ui-control-h-sm: 32px;
+  --ui-control-h-md: 40px;
+  --ui-control-h-lg: 48px;
+  --ui-radius-xs: 4px;
+  --ui-radius-sm: 6px;
+  --ui-radius-md: 8px;
+  --ui-radius-lg: 12px;
+  --ui-shadow-sm: 0 1px 2px rgb(0 0 0 / 6%);
+  --ui-shadow-md: 0 2px 8px rgb(0 0 0 / 10%);
+  --ui-shadow-lg: 0 8px 24px rgb(0 0 0 / 12%);
+
+  /* rail row sizing */
+  --rail-row-py: 10px;
+
+  /* app frame (use sparingly) */
+  --app-header-h: 48px;
+  /* inspector sizing */
+  --inspector-min-w: 240;
+  --inspector-max-w: 880;
+
+  /* compatibility aliases removed */
+}
+
+[data-theme='dark'] {
+  --bg: #0a0a0a;
+  --fg: #ededed;
+  --border: #1f2937;
+  /* main surfaces */
+  --surface-1: #252526; /* central chat + inspector */
+  --surface-2: #111827; /* rails/secondary */
+  /* app-specific surfaces */
+  --surface-header: #3C3C3C; /* header bar */
+  --surface-chat-input: #3A3A3A; /* composer/input */
+  --surface-thread: #1E1E1E; /* thread list item base */
+  /* subtle pill/trigger backgrounds */
+  --surface-pill: #2E2E2E;
+  --primary: #7c4dff;
+  --accent: #7c4dff;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --error: #ef4444;
+  --info: #06b6d4;
+  --fg-on-primary: #ffffff;
+
+  /* interactive mixes */
+  --accent-hover: color-mix(in oklab, var(--accent), black 10%);
+  --accent-active: color-mix(in oklab, var(--accent), black 15%);
+  --error-hover: color-mix(in oklab, var(--error), black 10%);
+  --error-active: color-mix(in oklab, var(--error), black 15%);
+  --surface-2-hover: color-mix(in oklab, var(--surface-2), black 5%);
+  --surface-2-active: color-mix(in oklab, var(--surface-2), black 8%);
+  --fg-muted: color-mix(in oklab, var(--fg), transparent 30%);
+  --fg-muted-40: color-mix(in oklab, var(--fg), transparent 40%);
+  --fg-muted-50: color-mix(in oklab, var(--fg), transparent 50%);
+  --fg-placeholder: color-mix(in oklab, var(--fg), transparent 60%);
+  --fg-disabled: color-mix(in oklab, var(--fg), transparent 50%);
+  --surface-1-disabled: color-mix(in oklab, var(--surface-1), black 3%);
+
+  /* semantic soft surfaces/text (dark) */
+  --primary-soft: color-mix(in oklab, var(--primary), transparent 90%);
+  --primary-soft-hover: color-mix(in oklab, var(--primary), transparent 85%);
+  --accent-soft: color-mix(in oklab, var(--accent), transparent 85%);
+  --accent-disabled-bg: color-mix(in oklab, var(--accent), transparent 60%);
+  --error-disabled-bg: color-mix(in oklab, var(--error), transparent 60%);
+  --surface-error-soft: color-mix(in oklab, var(--error), transparent 92%);
+  --fg-error-soft: color-mix(in oklab, var(--error), transparent 20%);
+  --fg-error-strong: color-mix(in oklab, var(--error), transparent 10%);
+  --surface-success-soft: color-mix(in oklab, var(--success), transparent 92%);
+  --fg-success-strong: color-mix(in oklab, var(--success), transparent 10%);
+  --surface-warn-soft: color-mix(in oklab, var(--warn), transparent 92%);
+  --surface-accent-soft: color-mix(in oklab, var(--accent), transparent 92%);
+  --fg-warn-strong: color-mix(in oklab, var(--warn), transparent 10%);
+
+  /* chat upload tokens (dark) */
+  --chat-upload-track: color-mix(in oklab, var(--fg), transparent 90%);
+  --chat-upload-bar: var(--primary);
+  --chat-upload-text-muted: color-mix(in oklab, var(--fg), transparent 45%);
+  --chat-upload-focus: var(--accent);
+
+  /* overlay/scrim */
+  --overlay-scrim: color-mix(in oklab, var(--fg), transparent 80%);
+
+  /* keep sizes/radii/shadows consistent */
+  /* rail row sizing (dark uses same spacing) */
+  --rail-row-py: 10px;
+}
+

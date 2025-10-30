@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: ECHO Board API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /api/chat/stream:
+    post:
+      summary: OpenAI-compatible chat stream (SSE)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role: { type: string, enum: [user, assistant, system] }
+                      content: { type: string }
+                model: { type: string }
+                chat_id: { type: string }
+      responses:
+        '200':
+          description: SSE stream of events
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+  /api/db/chats/{id}:
+    get:
+      summary: Get a chat by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/chats/{id}/move-to-project:
+    put:
+      summary: Move chat to project
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project_id: { type: integer, nullable: true }
+      responses:
+        '200': { description: OK }
+  /api/db/projects:
+    get:
+      summary: List projects
+      responses:
+        '200': { description: OK }
+  /api/db/evidence/{id}:
+    get:
+      summary: Get evidence by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/evidence/by-message:
+    get:
+      summary: Get evidence by message
+      parameters:
+        - in: query
+          name: message_id
+          required: true
+          schema: { type: integer }
+        - in: query
+          name: chat_id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/uploads/files:
+    post:
+      summary: Upload files with SSE processing
+      responses:
+        '200': { description: OK }
+
+  # Settings - Account
+  /api/db/account/password/update:
+    post:
+      summary: Update password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword: { type: string }
+                newPassword: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/account/2fa/email/enable:
+    post:
+      summary: Enable email 2FA
+      responses:
+        '200': { description: OK }
+  /api/db/account/2fa/email/verify:
+    post:
+      summary: Verify email 2FA code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/account/2fa/email/disable:
+    post:
+      summary: Disable email 2FA
+      responses:
+        '200': { description: OK }
+  /api/db/account/email/change:
+    post:
+      summary: Request email change
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newEmail: { type: string, format: email }
+      responses:
+        '200': { description: OK }
+  /api/db/account/email/confirm:
+    post:
+      summary: Confirm email change
+      responses:
+        '200': { description: OK }
+  /api/db/account/email/cancel:
+    post:
+      summary: Cancel email change
+      responses:
+        '200': { description: OK }
+
+  # Settings - Billing
+  /api/db/billing/portal:
+    post:
+      summary: Open billing portal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url: { type: string, format: uri }
+
+  # Settings - Users & Access
+  /api/db/connections/stores:
+    get:
+      summary: List connected stores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties: { storeId: { type: string }, storeName: { type: string } }
+  /api/db/permissions/invite:
+    post:
+      summary: Invite user(s)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId: { type: string }
+                email: { type: string, format: email }
+                role: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/permissions/assign:
+    post:
+      summary: Assign role to user for store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId: { type: string }
+                userId: { type: string }
+                role: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/db/permissions/disable:
+    post:
+      summary: Disable user from store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId: { type: string }
+                userId: { type: string }
+      responses:
+        '200': { description: OK }
+
+  # Settings - Connections
+  /api/db/connections:
+    get:
+      summary: List connections per store
+      responses:
+        '200': { description: OK }
+  /api/db/connections/reauth:
+    post:
+      summary: Get reauth URL for a service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId: { type: string }
+                service: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authUrl: { type: string, format: uri }
+  /api/db/connections/prereq:
+    get:
+      summary: Prerequisite info for connect wizard
+      responses:
+        '200': { description: OK }
+  /api/db/connections/initiate:
+    post:
+      summary: Initiate connect session
+      responses:
+        '200': { description: OK }
+  /api/db/connections/authorize:
+    post:
+      summary: Authorize connect session
+      responses:
+        '200': { description: OK }
+  /api/db/connections/session-status:
+    get:
+      summary: Get connect session status
+      responses:
+        '200': { description: OK }
+  /api/db/connections/notify-on-ready:
+    post:
+      summary: Request notification when connection is ready
+      responses:
+        '200': { description: OK }
+  /api/db/connections/sync:
+    post:
+      summary: Trigger sync for a service
+      responses:
+        '200': { description: OK }
+  /api/db/connections/unlink:
+    post:
+      summary: Unlink a service
+      responses:
+        '200': { description: OK }
+  /api/db/connections/last-error:
+    get:
+      summary: Get last error for a service
+      responses:
+        '200': { description: OK }
+
+  # Settings - Roles
+  /api/db/roles:
+    get:
+      summary: List role resources/thresholds
+      responses:
+        '200': { description: OK }
+  /api/db/roles/items:
+    post:
+      summary: Create role
+      responses:
+        '200': { description: OK }
+  /api/db/roles/items/{id}:
+    patch:
+      summary: Update role
+      parameters: [{ in: path, name: id, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: OK }
+    delete:
+      summary: Delete role
+      parameters: [{ in: path, name: id, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: OK }
+
+  # Settings - Run Logs
+  /api/db/run-logs/threads:
+    get:
+      summary: List run log threads
+      responses:
+        '200': { description: OK }
+  /api/db/run-logs/threads/{threadId}/runs:
+    get:
+      summary: List runs for a thread
+      parameters: [{ in: path, name: threadId, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: OK }
+
+  # Settings - Help & Contact
+  /api/db/help/faq:
+    get:
+      summary: Get FAQ entries
+      responses:
+        '200': { description: OK }
+  /api/db/help/guides:
+    get:
+      summary: Get help guides
+      responses:
+        '200': { description: OK }
+  /api/db/contact:
+    post:
+      summary: Post contact message
+      responses:
+        '200': { description: OK }
+

@@ -1,0 +1,41 @@
+name: UI Policy
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ripgrep (rg)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ripgrep
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: ESLint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: UI policy grep checks
+        working-directory: frontend
+        run: npm run policy:check
+
+      - name: Stylelint
+        working-directory: frontend
+        run: npm run stylelint
+
+
